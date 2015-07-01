@@ -1,0 +1,10 @@
+D:\Project\BHGroup\Site\BHGroup\BHGroupDAL\bin\Release\BHGroupDAL.dll.config
+D:\Project\BHGroup\Site\BHGroup\BHGroupDAL\bin\Release\BHGroupDAL.dll
+D:\Project\BHGroup\Site\BHGroup\BHGroupDAL\bin\Release\BHGroupDAL.pdb
+D:\Project\BHGroup\Site\BHGroup\BHGroupDAL\bin\Release\EntityFramework.dll
+D:\Project\BHGroup\Site\BHGroup\BHGroupDAL\bin\Release\EntityFramework.SqlServer.dll
+D:\Project\BHGroup\Site\BHGroup\BHGroupDAL\bin\Release\EntityFramework.xml
+D:\Project\BHGroup\Site\BHGroup\BHGroupDAL\bin\Release\EntityFramework.SqlServer.xml
+D:\Project\BHGroup\Site\BHGroup\BHGroupDAL\obj\Release\BHGroupDAL.csprojResolveAssemblyReference.cache
+D:\Project\BHGroup\Site\BHGroup\BHGroupDAL\obj\Release\BHGroupDAL.dll
+D:\Project\BHGroup\Site\BHGroup\BHGroupDAL\obj\Release\BHGroupDAL.pdb

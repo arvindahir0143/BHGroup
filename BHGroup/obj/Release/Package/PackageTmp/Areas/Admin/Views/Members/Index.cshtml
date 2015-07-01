@@ -1,0 +1,113 @@
+﻿@{
+    ViewBag.Title = "Members";
+}
+<script src="~/Scripts/jquery.showMessage.min.js"></script>
+@Html.Partial("_ResultMessage")
+
+<script type="text/javascript">
+
+    function showGrid() {
+        $('#MemberDataGrid').jqGrid({
+            colNames: ['', 'Name', 'MemberShip No', 'Birth Date', 'Age', 'MobileNo', 'EmailId', 'Actions'],
+            colModel: [
+                        { name: 'id', key: true, search: false, hidden: true },
+                        { name: 'Name', index: 'Name', width: 20, search: true, searchoptions: JQ_sopt_string },
+                        { name: 'MemberShipNo', index: 'MemberShipNo', width: 15, search: true, searchoptions: JQ_sopt_string },
+                        { name: 'MobileNo', index: 'MobileNo', width: 15, align: "center", search: true, searchoptions: JQ_sopt_string },
+                        { name: 'EmailId', index: 'EmailId', width: 15, align: "center", search: true, searchoptions: JQ_sopt_string },
+                        { name: 'Age', index: 'Age', width: 15, search: true, searchoptions: JQ_sopt_string },
+                        {
+                            name: 'DOB', index: 'DOB', width: 15, align: "center", formatter: "date", search: true, searchoptions: {
+                                sopt: ['eq'], dataInit: function (el) {
+                                    $(el).datepicker({ autoclose: true })
+                                    .on('changeDate', function (ev) {
+                                        $(this).datepicker('hide');
+                                        $("#MemberDataGrid")[0].triggerToolbar();
+                                    });
+                                }
+                            }
+                        },
+                        { name: 'Action', width: 10, sortable: false, formatter: ActionFormatter, search: false, align: "center" },
+            ],
+            pager: jQuery('#MemberDataPager'),
+            sortname: 'MemberId',
+            sortorder: "desc",
+            rowNum: 10,
+            rowList: [5, 10, 20, 50, 100],
+            autowidth: true,
+            height: '100%',
+            datatype: 'json',
+            cmTemplate: { title: false },
+            viewrecords: true,
+            mtype: 'GET',
+            jsonReader: {
+                root: "rows",
+                page: "page",
+                total: "total",
+                records: "records",
+                repeatitems: false,
+                userdata: "userdata"
+            },
+            url: '/Members/GetGridData'
+        }).navGrid('#MemberDataPager', { view: false, del: false, add: false, edit: false, search: false, referesh: true },
+           {}, // default settings for edit
+           {}, // default settings for add
+           {}, // delete instead that del:false we need this
+           { closeOnEscape: true, multipleSearch: true, closeAfterSearch: true }, // search options
+           {} /* view parameters*/
+         ).jqGrid('filterToolbar', { stringResult: true, searchOnEnter: false, defaultSearch: 'cn' });
+    };
+
+    function ActionFormatter(cellvalue, options, rowObject) {
+
+        return "<a href='../Members/manage?id=" + cellvalue + " ' >Update</a> | <a href='javascript:void(0);' onclick='Delete(" + cellvalue + ");'>Delete</a> ";
+    }
+
+    $(document).ready(function () {
+        showGrid();
+    });
+
+    function Delete(entityId) {
+        if (confirm("Are you sure you want completely delete this Member ?")) {
+            $.post("/Members/Delete?id=" + entityId, function (data, status) {
+                if (data.success) {
+                    SuccessMessage(data.message);
+                    $('#MemberDataGrid').trigger('reloadGrid');
+                }
+                else {
+                    ErrorMessage(data.message);
+                }
+            });
+        }
+    }
+
+    function Add() {
+        window.location = '@Url.Content("~/Admin/Members/Manage")';
+    }
+
+</script>
+<section class="content-header">
+    <h1>
+        Members
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Dashboard</li>
+    </ol>
+</section>
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <a class="btn btn-primary btn-sm btn-right" onclick="Add();"><i class="fa fa-fw fa-plus"></i> ADD</a>
+            <div class="clearfix"><br /></div>
+            <div class="box-body col-md-12">
+                <div class="jqgrid">
+                    <table id="MemberDataGrid"></table>
+                    <div id="MemberDataPager"></div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+
+</section>

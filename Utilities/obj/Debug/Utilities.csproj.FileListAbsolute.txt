@@ -1,0 +1,10 @@
+D:\Project\BHGroup\Site\BHGroup\Utilities\bin\Debug\Utilities.dll
+D:\Project\BHGroup\Site\BHGroup\Utilities\bin\Debug\Utilities.pdb
+D:\Project\BHGroup\Site\BHGroup\Utilities\obj\Debug\Utilities.dll
+D:\Project\BHGroup\Site\BHGroup\Utilities\obj\Debug\Utilities.pdb
+D:\Project\BHGroup\Site\BHGroup\Utilities\obj\Debug\Utilities.csprojResolveAssemblyReference.cache
+D:\Develo\BHGroup\Site\BHGroup\Utilities\bin\Debug\Utilities.dll
+D:\Develo\BHGroup\Site\BHGroup\Utilities\bin\Debug\Utilities.pdb
+D:\Develo\BHGroup\Site\BHGroup\Utilities\obj\Debug\Utilities.csprojResolveAssemblyReference.cache
+D:\Develo\BHGroup\Site\BHGroup\Utilities\obj\Debug\Utilities.dll
+D:\Develo\BHGroup\Site\BHGroup\Utilities\obj\Debug\Utilities.pdb

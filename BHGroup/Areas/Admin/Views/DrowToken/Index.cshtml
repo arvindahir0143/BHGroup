@@ -1,0 +1,81 @@
+﻿@{
+    ViewBag.Title = "Members Drow ";
+}
+
+<section class="content-header">
+    <h1>
+        Drow Token
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Drow Token</li>
+    </ol>
+</section>
+<section class="content">
+    <div class="row">
+
+        <div class="box-body col-md-12">           
+            <div class="clearfix"><br /></div>
+            <div class="jqgrid">
+                <table id="DrowDataGrid"></table>
+                <div id="DrowDataPager"></div>
+            </div>
+        </div>
+    </div>
+
+
+</section>
+<script type="text/javascript">
+
+    function showGrid() {
+        $('#DrowDataGrid').jqGrid({
+            colNames: ['Token No', 'Name', 'Status', 'Create Date'],
+            colModel: [
+                        { name: 'id', key: true, index: 'DrowTokenId',align: "center", width: 10, search: true, searchoptions: JQ_sopt_string },
+                        { name: 'Name', index: 'Member.Name',align: "center", width: 30, search: true, searchoptions: JQ_sopt_string },
+                        { name: 'Status', index: 'Status', width: 15,align: "center", search: true, searchoptions: JQ_sopt_string },
+                        {
+                            name: 'Creaton', index: 'Creaton', width: 15, align: "center", formatter: "date", search: true, searchoptions: {
+                                sopt: ['eq'], dataInit: function (el) {
+                                    $(el).datepicker({ autoclose: true })
+                                    .on('changeDate', function (ev) {
+                                        $(this).datepicker('hide');
+                                        $("#DrowDataGrid")[0].triggerToolbar();
+                                    });
+                                }
+                            }
+                        },
+            ],
+            pager: jQuery('#DrowDataPager'),
+            sortname: 'DrowTokenId',
+            sortorder: "desc",
+            rowNum: 10,
+            rowList: [5, 10, 20, 50, 100],
+            autowidth: true,
+            height: '100%',
+            datatype: 'json',
+            cmTemplate: { title: false },
+            viewrecords: true,
+            mtype: 'GET',
+            jsonReader: {
+                root: "rows",
+                page: "page",
+                total: "total",
+                records: "records",
+                repeatitems: false,
+                userdata: "userdata"
+            },
+            url: '/DrowToken/GetGridData'
+        }).navGrid('#DrowDataPager', { view: false, del: false, add: false, edit: false, search: false, referesh: true },
+           {}, // default settings for edit
+           {}, // default settings for add
+           {}, // delete instead that del:false we need this
+           { closeOnEscape: true, multipleSearch: true, closeAfterSearch: true }, // search options
+           {} /* view parameters*/
+         ).jqGrid('filterToolbar', { stringResult: true, searchOnEnter: false, defaultSearch: 'cn' });
+    };
+    $(document).ready(function () {
+        showGrid();
+    });
+
+</script>

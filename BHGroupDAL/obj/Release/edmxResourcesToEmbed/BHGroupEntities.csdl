@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BHGroupModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="BHGroupEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Members" EntityType="BHGroupModel.Member" />
+    <EntitySet Name="PloatBookings" EntityType="BHGroupModel.PloatBooking" />
+    <AssociationSet Name="FK_PloatBooking_Member" Association="BHGroupModel.FK_PloatBooking_Member">
+      <End EntitySet="Members" Role="Member" />
+      <End EntitySet="PloatBookings" Role="PloatBooking" />
+    </AssociationSet>
+    <EntitySet Name="DrowTokens" EntityType="BHGroupModel.DrowToken" />
+    <AssociationSet Name="FK_DrowTokens_Member" Association="BHGroupModel.FK_DrowTokens_Member">
+      <End Role="Member" EntitySet="Members" />
+      <End Role="DrowToken" EntitySet="DrowTokens" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Member">
+    <Key>
+      <PropertyRef Name="MemberId" />
+    </Key>
+    <Property Name="MemberId" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+    <Property Name="Name" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" Type="String" />
+    <Property Name="MemberShipNo" Nullable="false" Type="Int32" />
+    <Property Name="ParentId" Nullable="false" Type="Int32" />
+    <Property Name="Age" MaxLength="5" FixedLength="false" Unicode="true" Type="String" />
+    <Property Name="DOB" Precision="3" Type="DateTime" />
+    <Property Name="Profession" MaxLength="250" FixedLength="false" Unicode="true" Type="String" />
+    <Property Name="Address" MaxLength="Max" FixedLength="false" Unicode="false" Type="String" />
+    <Property Name="OfficeAddress" MaxLength="Max" FixedLength="false" Unicode="false" Type="String" />
+    <Property Name="PhoneNo_Office" MaxLength="15" FixedLength="false" Unicode="true" Type="String" />
+    <Property Name="PhoneNo_Resident" MaxLength="15" FixedLength="false" Unicode="true" Type="String" />
+    <Property Name="MobileNo" MaxLength="15" FixedLength="false" Unicode="true" Type="String" />
+    <Property Name="EmailId" MaxLength="50" FixedLength="false" Unicode="true" Type="String" />
+    <Property Name="PANNo" MaxLength="15" FixedLength="false" Unicode="true" Type="String" />
+    <Property Name="NomineesName" MaxLength="25" FixedLength="false" Unicode="true" Type="String" />
+    <Property Name="NomRelation" MaxLength="50" FixedLength="false" Unicode="true" Type="String" />
+    <Property Name="NomAge" MaxLength="5" FixedLength="false" Unicode="true" Type="String" />
+    <Property Name="NomDOB" Precision="3" Type="DateTime" />
+    <Property Name="NomProfession" MaxLength="100" FixedLength="false" Unicode="true" Type="String" />
+    <Property Name="PreferredZone" MaxLength="50" FixedLength="false" Unicode="true" Type="String" />
+    <Property Name="Password" MaxLength="50" FixedLength="false" Unicode="true" Type="String" />
+    <Property Name="CreateOn" Nullable="false" Precision="3" Type="DateTime" />
+    <NavigationProperty Name="PloatBookings" Relationship="BHGroupModel.FK_PloatBooking_Member" FromRole="Member" ToRole="PloatBooking" />
+    <NavigationProperty Name="DrowTokens" Relationship="BHGroupModel.FK_DrowTokens_Member" FromRole="Member" ToRole="DrowToken" />
+  </EntityType>
+  <EntityType Name="PloatBooking">
+    <Key>
+      <PropertyRef Name="PloatBookingId" />
+    </Key>
+    <Property Name="PloatBookingId" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+    <Property Name="MemberId" Nullable="false" Type="Int32" />
+    <Property Name="PloatType" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" Type="String" />
+    <Property Name="PloatQty" Nullable="false" Type="Int32" />
+    <Property Name="CreatOn" Nullable="false" Precision="3" Type="DateTime" />
+    <NavigationProperty Name="Member" Relationship="BHGroupModel.FK_PloatBooking_Member" FromRole="PloatBooking" ToRole="Member" />
+  </EntityType>
+  <Association Name="FK_PloatBooking_Member">
+    <End Type="BHGroupModel.Member" Multiplicity="1" Role="Member">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="BHGroupModel.PloatBooking" Multiplicity="*" Role="PloatBooking" />
+    <ReferentialConstraint>
+      <Principal Role="Member">
+        <PropertyRef Name="MemberId" />
+      </Principal>
+      <Dependent Role="PloatBooking">
+        <PropertyRef Name="MemberId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="DrowToken">
+    <Key>
+      <PropertyRef Name="DrowTokenId" />
+    </Key>
+    <Property Name="DrowTokenId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MemberId" Type="Int32" Nullable="false" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Creaton" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Modifiedon" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Member" Relationship="BHGroupModel.FK_DrowTokens_Member" FromRole="DrowToken" ToRole="Member" />
+  </EntityType>
+  <Association Name="FK_DrowTokens_Member">
+    <End Type="BHGroupModel.Member" Role="Member" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="BHGroupModel.DrowToken" Role="DrowToken" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Member">
+        <PropertyRef Name="MemberId" />
+      </Principal>
+      <Dependent Role="DrowToken">
+        <PropertyRef Name="MemberId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

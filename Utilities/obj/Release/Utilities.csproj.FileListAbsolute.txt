@@ -1,0 +1,5 @@
+D:\Project\BHGroup\Site\BHGroup\Utilities\bin\Release\Utilities.dll
+D:\Project\BHGroup\Site\BHGroup\Utilities\bin\Release\Utilities.pdb
+D:\Project\BHGroup\Site\BHGroup\Utilities\obj\Release\Utilities.csprojResolveAssemblyReference.cache
+D:\Project\BHGroup\Site\BHGroup\Utilities\obj\Release\Utilities.dll
+D:\Project\BHGroup\Site\BHGroup\Utilities\obj\Release\Utilities.pdb

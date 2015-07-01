@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1E4F3D94-9D6B-4C14-8B2E-245C46284D08}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BHGroupEntity</RootNamespace>
+    <AssemblyName>BHGroupEntity</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\BHGroupDAL\AdminLogin.cs">
+      <Link>AdminLogin.cs</Link>
+      <DependentUpon>BHGroupEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\BHGroupDAL\BHGroupEntities.cs">
+      <Link>BHGroupEntities.cs</Link>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BHGroupEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\BHGroupDAL\DrowToken.cs">
+      <Link>DrowToken.cs</Link>
+      <DependentUpon>BHGroupEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\BHGroupDAL\Member.cs">
+      <Link>Member.cs</Link>
+      <DependentUpon>BHGroupEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\BHGroupDAL\MemberPayroll.cs">
+      <Link>MemberPayroll.cs</Link>
+      <DependentUpon>BHGroupEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\BHGroupDAL\PloatBooking.cs">
+      <Link>PloatBooking.cs</Link>
+      <DependentUpon>BHGroupEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\BHGroupDAL\UserProfile.cs">
+      <Link>UserProfile.cs</Link>
+      <DependentUpon>BHGroupEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\BHGroupDAL\webpages_Membership.cs">
+      <Link>webpages_Membership.cs</Link>
+      <DependentUpon>BHGroupEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\BHGroupDAL\webpages_OAuthMembership.cs">
+      <Link>webpages_OAuthMembership.cs</Link>
+      <DependentUpon>BHGroupEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\BHGroupDAL\webpages_Roles.cs">
+      <Link>webpages_Roles.cs</Link>
+      <DependentUpon>BHGroupEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\CommonMsg.cs" />
+    <Compile Include="Classes\Constants.cs" />
+    <Compile Include="Classes\EntityNames.cs" />
+    <Compile Include="Classes\EnumData.cs" />
+    <Compile Include="Grid\Filter.cs" />
+    <Compile Include="Grid\GridModelBinder.cs" />
+    <Compile Include="Grid\GridSettings.cs" />
+    <Compile Include="Grid\Rule.cs" />
+    <Compile Include="Helper\LinqExtensions.cs" />
+    <Compile Include="Helper\StringEnum.cs" />
+    <Compile Include="Helper\WhereOperation.cs" />
+    <Compile Include="Metadata\MemberMetadata.cs" />
+    <Compile Include="Metadata\PloatBookingMetadata.cs" />
+    <Compile Include="Metadata\UserMetadata.cs" />
+    <Compile Include="Model\AddUserModel.cs" />
+    <Compile Include="Model\EditUserModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\BHGroupDAL\BHGroupEntities.tt">
+      <Link>BHGroupEntities.tt</Link>
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>BHGroupEntities.cs</LastGenOutput>
+      <CustomToolNamespace>BHGroupEntity</CustomToolNamespace>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

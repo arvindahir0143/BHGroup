@@ -1,0 +1,199 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BHGroupModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="BHGroupEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="DrowTokens" EntityType="BHGroupModel.DrowToken" />
+    <EntitySet Name="Members" EntityType="BHGroupModel.Member" />
+    <EntitySet Name="MemberPayrolls" EntityType="BHGroupModel.MemberPayroll" />
+    <EntitySet Name="UserProfiles" EntityType="BHGroupModel.UserProfile" />
+    <EntitySet Name="webpages_Membership" EntityType="BHGroupModel.webpages_Membership" />
+    <EntitySet Name="webpages_OAuthMembership" EntityType="BHGroupModel.webpages_OAuthMembership" />
+    <EntitySet Name="webpages_Roles" EntityType="BHGroupModel.webpages_Roles" />
+    <AssociationSet Name="FK_DrowTokens_Member" Association="BHGroupModel.FK_DrowTokens_Member">
+      <End Role="Member" EntitySet="Members" />
+      <End Role="DrowToken" EntitySet="DrowTokens" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MemberPayroll_Member" Association="BHGroupModel.FK_MemberPayroll_Member">
+      <End Role="Member" EntitySet="Members" />
+      <End Role="MemberPayroll" EntitySet="MemberPayrolls" />
+    </AssociationSet>
+    <AssociationSet Name="webpages_UsersInRoles" Association="BHGroupModel.webpages_UsersInRoles">
+      <End Role="webpages_Roles" EntitySet="webpages_Roles" />
+      <End Role="UserProfile" EntitySet="UserProfiles" />
+    </AssociationSet>
+    <EntitySet Name="PloatBookings" EntityType="BHGroupModel.PloatBooking" />
+    <AssociationSet Name="FK_PloatBooking_Member" Association="BHGroupModel.FK_PloatBooking_Member">
+      <End Role="Member" EntitySet="Members" />
+      <End Role="PloatBooking" EntitySet="PloatBookings" />
+    </AssociationSet>
+    <EntitySet Name="AdminLogins" EntityType="BHGroupModel.AdminLogin" />
+  </EntityContainer>
+  <EntityType Name="DrowToken">
+    <Key>
+      <PropertyRef Name="DrowTokenId" />
+    </Key>
+    <Property Name="DrowTokenId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MemberId" Type="Int32" Nullable="false" />
+    <Property Name="TokenNo" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Creaton" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Modifiedon" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Member" Relationship="BHGroupModel.FK_DrowTokens_Member" FromRole="DrowToken" ToRole="Member" />
+  </EntityType>
+  <EntityType Name="Member">
+    <Key>
+      <PropertyRef Name="MemberId" />
+    </Key>
+    <Property Name="MemberId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="MemberShipNo" Type="Int32" Nullable="false" />
+    <Property Name="ParentId" Type="Int32" Nullable="false" />
+    <Property Name="Age" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="DOB" Type="DateTime" Precision="3" />
+    <Property Name="Profession" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="OfficeAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="PhoneNo_Office" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNo_Resident" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="MobileNo" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="EmailId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PANNo" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="NomineesName" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="NomRelation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NomAge" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="NomDOB" Type="DateTime" Precision="3" />
+    <Property Name="NomProfession" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="PreferredZone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Intrest" Type="Int32" />
+    <Property Name="MemberType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreateOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="DrowTokens" Relationship="BHGroupModel.FK_DrowTokens_Member" FromRole="Member" ToRole="DrowToken" />
+    <NavigationProperty Name="MemberPayrolls" Relationship="BHGroupModel.FK_MemberPayroll_Member" FromRole="Member" ToRole="MemberPayroll" />
+    <NavigationProperty Name="PloatBookings" Relationship="BHGroupModel.FK_PloatBooking_Member" FromRole="Member" ToRole="PloatBooking" />
+  </EntityType>
+  <EntityType Name="MemberPayroll">
+    <Key>
+      <PropertyRef Name="PaymentId" />
+    </Key>
+    <Property Name="PaymentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MemberId" Type="Int32" Nullable="false" />
+    <Property Name="Installment" Type="Double" Nullable="false" />
+    <Property Name="ReceiveAmt" Type="Double" Nullable="false" />
+    <Property Name="DueAmt" Type="Double" Nullable="false" />
+    <Property Name="Status" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="CreatOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ModifidOn" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Member" Relationship="BHGroupModel.FK_MemberPayroll_Member" FromRole="MemberPayroll" ToRole="Member" />
+  </EntityType>
+  <EntityType Name="UserProfile">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="56" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="webpages_Roles" Relationship="BHGroupModel.webpages_UsersInRoles" FromRole="UserProfile" ToRole="webpages_Roles" />
+  </EntityType>
+  <EntityType Name="webpages_Membership">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="CreateDate" Type="DateTime" Precision="3" />
+    <Property Name="ConfirmationToken" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="IsConfirmed" Type="Boolean" />
+    <Property Name="LastPasswordFailureDate" Type="DateTime" Precision="3" />
+    <Property Name="PasswordFailuresSinceLastSuccess" Type="Int32" Nullable="false" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="PasswordChangedDate" Type="DateTime" Precision="3" />
+    <Property Name="PasswordSalt" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="PasswordVerificationToken" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="PasswordVerificationTokenExpirationDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="webpages_OAuthMembership">
+    <Key>
+      <PropertyRef Name="Provider" />
+      <PropertyRef Name="ProviderUserId" />
+    </Key>
+    <Property Name="Provider" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="ProviderUserId" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="webpages_Roles">
+    <Key>
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="RoleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="UserProfiles" Relationship="BHGroupModel.webpages_UsersInRoles" FromRole="webpages_Roles" ToRole="UserProfile" />
+  </EntityType>
+  <Association Name="FK_DrowTokens_Member">
+    <End Type="BHGroupModel.Member" Role="Member" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="BHGroupModel.DrowToken" Role="DrowToken" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Member">
+        <PropertyRef Name="MemberId" />
+      </Principal>
+      <Dependent Role="DrowToken">
+        <PropertyRef Name="MemberId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MemberPayroll_Member">
+    <End Type="BHGroupModel.Member" Role="Member" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="BHGroupModel.MemberPayroll" Role="MemberPayroll" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Member">
+        <PropertyRef Name="MemberId" />
+      </Principal>
+      <Dependent Role="MemberPayroll">
+        <PropertyRef Name="MemberId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="webpages_UsersInRoles">
+    <End Type="BHGroupModel.webpages_Roles" Role="webpages_Roles" Multiplicity="*" />
+    <End Type="BHGroupModel.UserProfile" Role="UserProfile" Multiplicity="*" />
+  </Association>
+  <EntityType Name="PloatBooking">
+    <Key>
+      <PropertyRef Name="PloatBookingId" />
+    </Key>
+    <Property Name="PloatBookingId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MemberId" Type="Int32" Nullable="false" />
+    <Property Name="PloatType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PlotDesc" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Qty" Type="Int32" Nullable="false" />
+    <Property Name="Amt" Type="Double" Nullable="false" />
+    <Property Name="NetAmt" Type="Double" Nullable="false" />
+    <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Member" Relationship="BHGroupModel.FK_PloatBooking_Member" FromRole="PloatBooking" ToRole="Member" />
+  </EntityType>
+  <Association Name="FK_PloatBooking_Member">
+    <End Type="BHGroupModel.Member" Role="Member" Multiplicity="1" />
+    <End Type="BHGroupModel.PloatBooking" Role="PloatBooking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Member">
+        <PropertyRef Name="MemberId" />
+      </Principal>
+      <Dependent Role="PloatBooking">
+        <PropertyRef Name="MemberId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="AdminLogin">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Createon" Type="DateTime" Precision="3" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+</Schema>

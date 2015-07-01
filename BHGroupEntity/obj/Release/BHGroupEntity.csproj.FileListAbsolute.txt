@@ -1,0 +1,10 @@
+D:\Project\BHGroup\Site\BHGroup\BHGroupEntity\bin\Release\BHGroupEntity.dll
+D:\Project\BHGroup\Site\BHGroup\BHGroupEntity\bin\Release\BHGroupEntity.pdb
+D:\Project\BHGroup\Site\BHGroup\BHGroupEntity\bin\Release\System.Web.Http.dll
+D:\Project\BHGroup\Site\BHGroup\BHGroupEntity\bin\Release\System.Net.Http.Formatting.dll
+D:\Project\BHGroup\Site\BHGroup\BHGroupEntity\bin\Release\Newtonsoft.Json.dll
+D:\Project\BHGroup\Site\BHGroup\BHGroupEntity\bin\Release\System.Web.Http.xml
+D:\Project\BHGroup\Site\BHGroup\BHGroupEntity\bin\Release\System.Net.Http.Formatting.xml
+D:\Project\BHGroup\Site\BHGroup\BHGroupEntity\obj\Release\BHGroupEntity.csprojResolveAssemblyReference.cache
+D:\Project\BHGroup\Site\BHGroup\BHGroupEntity\obj\Release\BHGroupEntity.dll
+D:\Project\BHGroup\Site\BHGroup\BHGroupEntity\obj\Release\BHGroupEntity.pdb

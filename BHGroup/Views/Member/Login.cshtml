@@ -1,0 +1,34 @@
+﻿@model BHGroup.Areas.Admin.ViewModels.LoginModel
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+@Html.Partial("_ResultMessage")
+@using (Html.BeginForm("Login", "Member", FormMethod.Post))
+{
+    <div class="form-box" id="login-box">
+        <div class="header">Sign In</div>
+
+        <div class="body bg-gray">
+            <div class="form-group">
+
+                @Html.TextBoxFor(p => p.Email, new { @class = "form-control", placeholder = "Member ID" })
+            </div>
+            <div class="form-group">
+                @Html.PasswordFor(p => p.Password, new { @class = "form-control", placeholder = "Password" })
+            </div>
+            <div class="form-group">
+                <input type="checkbox" name="remember_me" /> Remember me
+            </div>
+        </div>
+        <div class="footer">
+            <button type="submit" class="btn bg-olive btn-block">Sign me in</button>
+
+            <p><a href="#">I forgot my password</a></p>
+
+
+        </div>
+
+    </div>
+}

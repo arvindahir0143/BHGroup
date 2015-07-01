@@ -1,0 +1,69 @@
+﻿@model BHGroupEntity.AdminLogin
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LoginLayout.cshtml";
+}
+
+<script src="~/Scripts/jquery.showMessage.min.js"></script>
+@Html.Partial("_ResultMessage")
+@*<div class="form-box" id="login-box">
+        <div class="header">Sign In</div>
+
+
+        @using (Html.BeginForm("Index", "Login", FormMethod.Post, new { id = "Save-Member-Form" }))
+        {
+            <div class="body bg-gray">
+                <div class="form-group">
+
+                    @Html.TextBoxFor(Model => Model.UserName, new { @class = "form-control", placeholder = "User ID" })
+
+
+                </div>
+                <div class="form-group">
+
+                    @Html.PasswordFor(Model => Model.Password, new { @class = "form-control", placeholder = "Password" })
+                </div>
+                <div class="form-group">
+                    <input type="checkbox" name="remember_me" /> Remember me
+                </div>
+            </div>
+            <div class="footer">
+                <button type="submit" class="btn bg-olive btn-block">Sign me in</button>
+
+                <p><a href="#">I forgot my password</a></p>
+
+                <a href="register.html" class="text-center">Register a new membership</a>
+            </div>
+
+        }
+    </div>*@
+<div class="center">
+    <div class="headline text-center" id="time">
+
+    </div>
+    @using (Html.BeginForm("Index", "Account", FormMethod.Post, new { id = "Save-Member-Form" }))
+    {
+        <div class="lockscreen-name">Admin</div>
+
+       
+        <div class="lockscreen-item">
+
+            <div class="lockscreen-image">
+                <img src="~/Content/img/avatar5.png" alt="user image" />
+            </div>
+
+            <div class="lockscreen-credentials">
+                <div class="input-group">
+                    @Html.PasswordFor(p => p.Password, new { @class = "form-control", placeholder = "Password" })
+                    
+                    <div class="input-group-btn">
+                        <button class="btn btn-flat" type="submit"><i class="fa fa-arrow-right text-muted"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    @*<div class="lockscreen-link">
+            <a href="login.html">Or sign in as a different user</a>
+        </div>*@
+</div>

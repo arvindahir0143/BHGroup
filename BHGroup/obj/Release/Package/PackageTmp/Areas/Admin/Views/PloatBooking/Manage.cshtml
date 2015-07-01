@@ -1,0 +1,74 @@
+﻿@model BHGroupEntity.PloatBooking
+@{
+    ViewBag.Title = "Manage Ploat";
+}
+
+<div class="modal-dialog" id="ManageData" style="width: 375px;">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <h5 class="modal-title" id="myModalLabel">Manage Ploat</h5>
+        </div>
+        <div class="modal-body form-right-text">
+            <div class="row">
+                <div class="col-md-12">
+                    @using (Html.BeginForm("Save", "PloatBooking", FormMethod.Post, new { Id = "Save-Ploat-Form", @name = "Manage-Ploat-Form" }))
+                        {
+                        @Html.ValidationSummary()
+                        @Html.HiddenFor(p => p.PloatBookingId)
+                        <div class="clearfix"></div>
+                        <div class="form-group ">
+                            <label>Member Name</label>
+                            @Html.DropDownListFor(model => model.MemberId, (IEnumerable<SelectListItem>)ViewBag.MemberLookUp, "-- Select Member --",
+                    new { @class = "form-control chosen col-md-6" })
+                            @Html.ValidationMessageFor(model => model.MemberId)
+                        </div>
+                        <div class="form-group">
+                            <label>Ploat Type</label>
+                            @Html.DropDownListFor(model => model.PloatType, Enum.GetNames(typeof(BHGroupEntity.Classes.En_PloatType)).Select(e => new SelectListItem { Text = e }), new { @class = "form-control" })
+
+                            @Html.ValidationMessageFor(m => m.PloatType)
+                        </div>
+                        <div class="form-group">
+                            <label>Ploat Qty</label>
+                            @Html.TextBoxFor(Model => Model.PloatQty, new { @class = "form-control", placeholder = "Enter Age" })
+                            @Html.ValidationMessageFor(m => m.PloatQty)
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-sm btn-primary" onclick="Save();">
+                                <i class="ace-icon fa fa-check bigger-110"></i>Save
+                            </button>
+                            <button type="button" class="btn btn-sm" data-dismiss="modal" onclick="Cancel();">
+                                <i class="ace-icon fa fa-undo bigger-110"></i>
+                                Cancel
+                            </button>
+                        </div>
+                        }
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+    <script type="text/javascript">
+        function Save() {
+            if ($('#Save-Ploat-Form').valid()) {
+                //$('#ManageData').block();
+                var formData = $("#Save-Ploat-Form").serialize();
+                $.post("@Url.Content("~/PloatBooking/Save")", formData, function (data) {
+                    if (data.success) {//on success refrsh view
+                        $('#dv_PopUp').modal('hide');
+                        SuccessMessage(data.message);
+                        $('#PloatDataGrid').trigger('reloadGrid');
+                    } else {
+                        //$('#ManageData').unblock();
+                        ErrorMessage(data.message);
+                    }
+                });
+            }
+        }
+        function Cancel() {
+            $('#dv_PopUp').modal('hide');
+        }
+    </script>

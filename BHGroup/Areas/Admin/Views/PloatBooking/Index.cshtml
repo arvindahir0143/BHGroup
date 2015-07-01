@@ -1,0 +1,105 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<section class="content-header">
+    <h1>
+        Ploat Booking
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Ploat Booking</li>
+    </ol>
+</section>
+<section class="content">
+    <div class="row">
+      
+            <div class="box-body col-md-12">
+                <a class="btn btn-primary btn-sm btn-right" onclick="Manage(0);"><i class="fa fa-fw fa-plus"></i> ADD</a>
+
+                <div class="clearfix"><br /></div>
+                <div class="jqgrid">
+                    <table id="PloatDataGrid"></table>
+                    <div id="PloatDataPager"></div>
+                </div>
+            </div>
+        </div>
+  
+
+</section>
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+<script type="text/javascript">
+
+    function showGrid() {
+        $('#PloatDataGrid').jqGrid({
+            colNames: ['', 'Name', 'Ploat Type', 'Ploat Qty', 'Actions'],
+            colModel: [
+                        { name: 'id', key: true, search: false, hidden: true },
+                        { name: 'Name', index: 'Member.Name', width: 20, search: true, searchoptions: JQ_sopt_string },
+                        { name: 'PloatType', index: 'PloatType', width: 15, search: true, searchoptions: JQ_sopt_string },
+                        { name: 'PloatQty', index: 'PloatQty', width: 15, align: "center", search: true, searchoptions: JQ_sopt_string },
+                        { name: 'Action', width: 10, sortable: false, formatter: ActionFormatter, search: false, align: "center" },
+            ],
+            pager: jQuery('#PloatDataPager'),
+            sortname: 'PloatBookingId',
+            sortorder: "desc",
+            rowNum: 10,
+            rowList: [5, 10, 20, 50, 100],
+            autowidth: true,
+            height: '100%',
+            datatype: 'json',
+            cmTemplate: { title: false },
+            viewrecords: true,
+            mtype: 'GET',
+            jsonReader: {
+                root: "rows",
+                page: "page",
+                total: "total",
+                records: "records",
+                repeatitems: false,
+                userdata: "userdata"
+            },
+            url: '/PloatBooking/GetGridData'
+        }).navGrid('#PloatDataPager', { view: false, del: false, add: false, edit: false, search: false, referesh: true },
+           {}, // default settings for edit
+           {}, // default settings for add
+           {}, // delete instead that del:false we need this
+           { closeOnEscape: true, multipleSearch: true, closeAfterSearch: true }, // search options
+           {} /* view parameters*/
+         ).jqGrid('filterToolbar', { stringResult: true, searchOnEnter: false, defaultSearch: 'cn' });
+    };
+
+    function ActionFormatter(cellvalue, options, rowObject) {
+
+        return "<a href='javascript:void(0);' onclick='Manage(" + cellvalue + ") ' >Edit</a> | <a href='javascript:void(0);' onclick='Delete(" + cellvalue + ");'>Delete</a> ";
+    }
+
+    $(document).ready(function () {
+        showGrid();
+    });
+
+    function Delete(entityId) {
+        if (confirm("Are you sure you want completely delete this Ploat Booking ?")) {
+
+            $.post("/PloatBooking/Delete?id=" + entityId, function (data, status) {
+
+                if (data.success) {
+                    SuccessMessage(data.message);
+                    $('#PloatDataGrid').trigger('reloadGrid');
+                }
+                else {
+                    ErrorMessage(data.message);
+                }
+            });
+        }
+    }
+
+    function Manage(entityId) {
+        $('#dv_PopUp').modal('show');
+        $('#dv_PopUp').html("");
+        $("#dv_PopUp").load('@Url.Content("~/Admin/PloatBooking/Manage?id=")' + entityId, function () { });
+    }
+</script>
+    }
+<div class="modal fade" id="dv_PopUp" role="dialog"></div>

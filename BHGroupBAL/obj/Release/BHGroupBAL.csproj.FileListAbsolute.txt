@@ -1,0 +1,15 @@
+D:\Project\BHGroup\Site\BHGroup\BHGroupBAL\bin\Release\BHGroupBAL.dll
+D:\Project\BHGroup\Site\BHGroup\BHGroupBAL\bin\Release\BHGroupBAL.pdb
+D:\Project\BHGroup\Site\BHGroup\BHGroupBAL\bin\Release\BHGroupDAL.dll
+D:\Project\BHGroup\Site\BHGroup\BHGroupBAL\bin\Release\BHGroupEntity.dll
+D:\Project\BHGroup\Site\BHGroup\BHGroupBAL\bin\Release\EntityFramework.dll
+D:\Project\BHGroup\Site\BHGroup\BHGroupBAL\bin\Release\Newtonsoft.Json.dll
+D:\Project\BHGroup\Site\BHGroup\BHGroupBAL\bin\Release\Utilities.dll
+D:\Project\BHGroup\Site\BHGroup\BHGroupBAL\bin\Release\BHGroupDAL.pdb
+D:\Project\BHGroup\Site\BHGroup\BHGroupBAL\bin\Release\BHGroupEntity.pdb
+D:\Project\BHGroup\Site\BHGroup\BHGroupBAL\bin\Release\EntityFramework.xml
+D:\Project\BHGroup\Site\BHGroup\BHGroupBAL\bin\Release\Newtonsoft.Json.xml
+D:\Project\BHGroup\Site\BHGroup\BHGroupBAL\bin\Release\Utilities.pdb
+D:\Project\BHGroup\Site\BHGroup\BHGroupBAL\obj\Release\BHGroupBAL.dll
+D:\Project\BHGroup\Site\BHGroup\BHGroupBAL\obj\Release\BHGroupBAL.pdb
+D:\Project\BHGroup\Site\BHGroup\BHGroupBAL\obj\Release\BHGroupBAL.csprojResolveAssemblyReference.cache

@@ -1,0 +1,154 @@
+﻿@model BHGroupEntity.Member
+@{
+    ViewBag.Title = "Create";
+}
+
+@Html.Partial("_ResultMessage")
+
+<section class="content-header">
+    <h1>
+        Manage Members
+        @*<small>Control panel</small>*@
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Members</a></li>
+        <li class="active">Manage Members</li>
+    </ol>
+</section>
+
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-primary">
+
+                @using (Html.BeginForm("Save", "Members", FormMethod.Post, new { id = "Save-Member-Form" }))
+                {
+                    @Html.ValidationSummary()
+                    @Html.HiddenFor(p => p.MemberId)
+                    @Html.HiddenFor(p => p.CreateOn)
+                  
+                    <div class="clearfix"></div>
+                    <div class="box-body col-md-6">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1"> Reference</label>
+                            @Html.DropDownListFor(model => model.ParentId, (IEnumerable<SelectListItem>)ViewBag.MemberLookUp, "",
+                                new { @class = "form-control chosen col-md-6" })
+                            @Html.ValidationMessageFor(model => model.ParentId)
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputEmail1"> Name</label>
+                            @Html.TextBoxFor(Model => Model.Name, new { @class = "form-control", placeholder = "Enter Name" })
+                            @Html.ValidationMessageFor(m => m.Name)
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputFile">Age</label>
+                            @Html.TextBoxFor(Model => Model.Age, new { @class = "form-control", placeholder = "Enter Age" })
+                            @Html.ValidationMessageFor(m => m.Age)
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputFile">DOB</label>
+                            @Html.TextBoxFor(Model => Model.DOB, new { @class = "form-control", placeholder = "Enter DOB" })
+
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputFile">Profession</label>
+                            @Html.TextBoxFor(Model => Model.Profession, new { @class = "form-control", placeholder = "Enter Profession" })
+
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputFile">Address</label>
+                            @Html.TextBoxFor(Model => Model.Address, new { @class = "form-control", placeholder = "Enter Address" })
+
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputFile">Office Address</label>
+                            @Html.TextBoxFor(Model => Model.OfficeAddress, new { @class = "form-control", placeholder = "Enter Office Address" })
+
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputFile">Office Phone No</label>
+                            @Html.TextBoxFor(Model => Model.PhoneNo_Office, new { @class = "form-control", placeholder = "Enter Office Phone" })
+
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputFile">Recident Phone No</label>
+                            @Html.TextBoxFor(Model => Model.PhoneNo_Resident, new { @class = "form-control", placeholder = "Enter Recident Phone" })
+
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputFile">Mobile No</label>
+                            @Html.TextBoxFor(Model => Model.MobileNo, new { @class = "form-control", placeholder = "Enter Mobile" })
+                        </div>
+                    </div>
+
+                    <div class="box-body col-md-6">
+
+                        <div class="form-group">
+                            @Html.LabelFor(Model => Model.MemberShipNo)
+                            
+                            @Html.TextBoxFor(Model => Model.MemberShipNo, new { @class = "form-control ", @readonly = "readonly" })
+                            @Html.ValidationMessageFor(m => m.MemberShipNo)
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Email </label>
+                            @Html.TextBoxFor(Model => Model.EmailId, new { @class = "form-control", placeholder = "Enter Email" })
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputFile">Pancard No</label>
+                            @Html.TextBoxFor(Model => Model.PANNo, new { @class = "form-control", placeholder = "Enter Pancard No" })
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputFile">Nominees Name</label>
+                            @Html.TextBoxFor(Model => Model.NomineesName, new { @class = "form-control", placeholder = "Enter Nominees Name" })
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputFile">Nominees Relation</label>
+                            @Html.TextBoxFor(Model => Model.NomRelation, new { @class = "form-control", placeholder = "Enter Nominees Relation" })
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputFile">Nominees Age</label>
+                            @Html.TextBoxFor(Model => Model.NomAge, new { @class = "form-control", placeholder = "Enter Nominees Age" })
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputFile">Nominees DOB</label>
+                            @Html.TextBoxFor(Model => Model.NomDOB, new { @class = "form-control bts_datepicker", placeholder = "Enter Nominees DOB" })
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputFile">Nominees Profession</label>
+                            @Html.TextBoxFor(Model => Model.NomProfession, new { @class = "form-control", placeholder = "Enter Nominees Profession" })
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputFile">Preferred Zone</label>
+                            @Html.TextBoxFor(Model => Model.PreferredZone, new { @class = "form-control", placeholder = "Enter Preferred Zone" })
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputFile">Password</label>
+                            @Html.TextBoxFor(Model => Model.Password, new { @class = "form-control disabled", @readonly = "readonly" })
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="box-footer">
+                        <button class="btn btn-primary" type="submit">Submit</button>
+                        <button class="btn btn-success" type="submit" onclick="Cancel()">Cancel</button>
+                    </div>
+                }
+            </div>
+
+        </div>
+    </div>
+</section>
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#NomDOB").datepicker({});
+        $("#DOB").datepicker({});
+    });
+    function Cancel() {
+        window.location = '@Url.Content("~/Admin//Members/Index")';
+    }
+  
+</script>
+    }

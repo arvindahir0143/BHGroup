@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BHGroupModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="DrowTokens">
+    <Key>
+      <PropertyRef Name="DrowTokenId" />
+    </Key>
+    <Property Name="DrowTokenId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MemberId" Type="int" Nullable="false" />
+    <Property Name="Status" Type="nvarchar" MaxLength="50" />
+    <Property Name="Creaton" Type="datetime" Nullable="false" />
+    <Property Name="Modifiedon" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Member">
+    <Key>
+      <PropertyRef Name="MemberId" />
+    </Key>
+    <Property Name="MemberId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="MemberShipNo" Type="int" Nullable="false" />
+    <Property Name="ParentId" Type="int" Nullable="false" />
+    <Property Name="Age" Type="nvarchar" MaxLength="5" />
+    <Property Name="DOB" Type="datetime" />
+    <Property Name="Profession" Type="nvarchar" MaxLength="250" />
+    <Property Name="Address" Type="text" />
+    <Property Name="OfficeAddress" Type="text" />
+    <Property Name="PhoneNo_Office" Type="nvarchar" MaxLength="15" />
+    <Property Name="PhoneNo_Resident" Type="nvarchar" MaxLength="15" />
+    <Property Name="MobileNo" Type="nvarchar" MaxLength="15" />
+    <Property Name="EmailId" Type="nvarchar" MaxLength="50" />
+    <Property Name="PANNo" Type="nvarchar" MaxLength="15" />
+    <Property Name="NomineesName" Type="nvarchar" MaxLength="25" />
+    <Property Name="NomRelation" Type="nvarchar" MaxLength="50" />
+    <Property Name="NomAge" Type="nvarchar" MaxLength="5" />
+    <Property Name="NomDOB" Type="datetime" />
+    <Property Name="NomProfession" Type="nvarchar" MaxLength="100" />
+    <Property Name="PreferredZone" Type="nvarchar" MaxLength="50" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreateOn" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PloatBooking">
+    <Key>
+      <PropertyRef Name="PloatBookingId" />
+    </Key>
+    <Property Name="PloatBookingId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MemberId" Type="int" Nullable="false" />
+    <Property Name="PloatType" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="PloatQty" Type="int" Nullable="false" />
+    <Property Name="CreatOn" Type="datetime" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_DrowTokens_Member">
+    <End Role="Member" Type="Self.Member" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="DrowTokens" Type="Self.DrowTokens" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Member">
+        <PropertyRef Name="MemberId" />
+      </Principal>
+      <Dependent Role="DrowTokens">
+        <PropertyRef Name="MemberId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PloatBooking_Member">
+    <End Role="Member" Type="Self.Member" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="PloatBooking" Type="Self.PloatBooking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Member">
+        <PropertyRef Name="MemberId" />
+      </Principal>
+      <Dependent Role="PloatBooking">
+        <PropertyRef Name="MemberId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="BHGroupModelStoreContainer">
+    <EntitySet Name="DrowTokens" EntityType="Self.DrowTokens" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Member" EntityType="Self.Member" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PloatBooking" EntityType="Self.PloatBooking" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_DrowTokens_Member" Association="Self.FK_DrowTokens_Member">
+      <End Role="Member" EntitySet="Member" />
+      <End Role="DrowTokens" EntitySet="DrowTokens" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PloatBooking_Member" Association="Self.FK_PloatBooking_Member">
+      <End Role="Member" EntitySet="Member" />
+      <End Role="PloatBooking" EntitySet="PloatBooking" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

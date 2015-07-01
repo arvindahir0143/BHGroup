@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BHGroupModelStoreContainer" CdmEntityContainer="BHGroupEntities">
+    <EntitySetMapping Name="Members">
+      <EntityTypeMapping TypeName="BHGroupModel.Member">
+        <MappingFragment StoreEntitySet="Member">
+          <ScalarProperty Name="CreateOn" ColumnName="CreateOn" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="PreferredZone" ColumnName="PreferredZone" />
+          <ScalarProperty Name="NomProfession" ColumnName="NomProfession" />
+          <ScalarProperty Name="NomDOB" ColumnName="NomDOB" />
+          <ScalarProperty Name="NomAge" ColumnName="NomAge" />
+          <ScalarProperty Name="NomRelation" ColumnName="NomRelation" />
+          <ScalarProperty Name="NomineesName" ColumnName="NomineesName" />
+          <ScalarProperty Name="PANNo" ColumnName="PANNo" />
+          <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+          <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+          <ScalarProperty Name="PhoneNo_Resident" ColumnName="PhoneNo_Resident" />
+          <ScalarProperty Name="PhoneNo_Office" ColumnName="PhoneNo_Office" />
+          <ScalarProperty Name="OfficeAddress" ColumnName="OfficeAddress" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Profession" ColumnName="Profession" />
+          <ScalarProperty Name="DOB" ColumnName="DOB" />
+          <ScalarProperty Name="Age" ColumnName="Age" />
+          <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+          <ScalarProperty Name="MemberShipNo" ColumnName="MemberShipNo" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="MemberId" ColumnName="MemberId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PloatBookings">
+      <EntityTypeMapping TypeName="BHGroupModel.PloatBooking">
+        <MappingFragment StoreEntitySet="PloatBooking">
+          <ScalarProperty Name="CreatOn" ColumnName="CreatOn" />
+          <ScalarProperty Name="PloatQty" ColumnName="PloatQty" />
+          <ScalarProperty Name="PloatType" ColumnName="PloatType" />
+          <ScalarProperty Name="MemberId" ColumnName="MemberId" />
+          <ScalarProperty Name="PloatBookingId" ColumnName="PloatBookingId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DrowTokens">
+      <EntityTypeMapping TypeName="BHGroupModel.DrowToken">
+        <MappingFragment StoreEntitySet="DrowTokens">
+          <ScalarProperty Name="Modifiedon" ColumnName="Modifiedon" />
+          <ScalarProperty Name="Creaton" ColumnName="Creaton" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="MemberId" ColumnName="MemberId" />
+          <ScalarProperty Name="DrowTokenId" ColumnName="DrowTokenId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

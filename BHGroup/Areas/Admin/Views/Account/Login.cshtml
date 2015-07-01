@@ -1,0 +1,40 @@
+﻿@model BHGroup.Areas.Admin.ViewModels.LoginModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LoginLayout.cshtml";
+}
+
+
+@Html.Partial("_ResultMessage")
+
+<div class="center">
+    <div class="headline text-center" id="time">
+
+    </div>
+    @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { id = "Save-Member-Form" }))
+    {
+        <div class="lockscreen-name">Admin</div>
+
+
+        <div class="lockscreen-item">
+
+            <div class="lockscreen-image">
+                <img src="~/Content/img/avatar5.png" alt="user image" />
+            </div>
+
+            <div class="lockscreen-credentials">
+                <div class="input-group">
+                    @Html.PasswordFor(p => p.Password, new { @class = "form-control", placeholder = "Password" })
+
+                    <div class="input-group-btn">
+                        <button class="btn btn-flat" type="submit"><i class="fa fa-arrow-right text-muted"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    @*<div class="lockscreen-link">
+            <a href="login.html">Or sign in as a different user</a>
+        </div>*@
+</div>
