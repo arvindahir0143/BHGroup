@@ -42,3 +42,4 @@ D:\Develo\BHGroup\Site\BHGroup\BHGroup\BHGroupBAL\bin\Debug\BHGroupEntity.pdb
 D:\Develo\BHGroup\Site\BHGroup\BHGroup\BHGroupBAL\bin\Debug\EntityFramework.xml
 D:\Develo\BHGroup\Site\BHGroup\BHGroup\BHGroupBAL\bin\Debug\Newtonsoft.Json.xml
 D:\Develo\BHGroup\Site\BHGroup\BHGroup\BHGroupBAL\bin\Debug\Utilities.pdb
+D:\Project\BHGroup\Site\BHGroup\BHGroupBAL\bin\Debug\Newtonsoft.Json.xml

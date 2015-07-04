@@ -35,7 +35,11 @@ namespace BHGroup.Areas.Admin.Controllers
         {
             try
             {
-                //model.CreatOn = DateTime.Now;
+                model.StartDate = DateTime.Now;
+                model.EndDate = DateTime.Now.AddMonths(75);
+                model.Amt = 600000;
+                model.NetAmt = model.Qty * model.Amt;
+                model.PlotDesc = "120 X 40 Plot";
                 bool Add_Flag = new PloatBookingBAL().isNewEntry(model.PloatBookingId);
                 if (Add_Flag)
                     new PloatBookingBAL().Create(model);

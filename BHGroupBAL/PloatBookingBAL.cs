@@ -142,7 +142,7 @@ namespace BHGroupBAL
             {
                 using (var ctx = new BHGroupEntities())
                 {
-                    return ctx.PloatBookings.Where(p => p.PloatBookingId == id).SingleOrDefault();
+                    return ctx.PloatBookings.Where(p => p.MemberId == id).SingleOrDefault();
                 }
             }
             catch (Exception ex)
